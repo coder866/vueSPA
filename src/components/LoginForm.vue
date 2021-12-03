@@ -28,10 +28,10 @@
 
 <script>
 import { getError } from "@/utils/helpers";
-import BaseBtn from "@/components/BaseBtn";
-import BaseInput from "@/components/BaseInput";
+import BaseBtn from "@/components/BaseBtn.vue";
+import BaseInput from "@/components/BaseInput.vue";
 import AuthService from "@/services/AuthService";
-import FlashMessage from "@/components/FlashMessage";
+import FlashMessage from "@/components/FlashMessage.vue";
 
 export default {
   name: "LoginView",
@@ -55,7 +55,12 @@ export default {
       };
       this.error = null;
       try {
-        await AuthService.login(payload);
+        AuthService.login(payload).then((resp)=>{
+          console.log("RESPONSE",resp);
+        },(err)=>{
+            console.log("ERROR",err);
+        });
+        
         const authUser = await this.$store.dispatch("auth/getAuthUser");
         if (authUser) {
           this.$store.dispatch("auth/setGuest", { value: "isNotGuest" });

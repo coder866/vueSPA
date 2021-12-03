@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import LogoutIcon from "@/components/icons/LogoutIcon";
+import LogoutIcon from "@/components/icons/LogoutIcon.vue";
 export default {
   components: { LogoutIcon },
   name: "Logout",

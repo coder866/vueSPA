@@ -5,7 +5,7 @@
             label="Name"
             name="name"
             v-model="name"
-            placeholder="Luke Skywalker"
+            placeholder="Big Bugs"
             class="mb-2"
         />
         <BaseInput
@@ -13,7 +13,7 @@
             label="Email"
             name="email"
             v-model="email"
-            placeholder="luke@jedi.com"
+            placeholder="bigbugs@mail.com"
             class="mb-2"
         />
         <BaseInput
@@ -39,7 +39,7 @@
 import { getError } from '@/utils/helpers.js'
 import BaseBtn from '@/components/BaseBtn.vue'
 import BaseInput from '@/components/BaseInput.vue'
-import AuthService from '@/services/AuthService.vue'
+import AuthService from '@/services/AuthService.js'
 import FlashMessage from '@/components/FlashMessage.vue'
 
 export default {

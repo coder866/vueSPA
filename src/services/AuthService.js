@@ -2,7 +2,7 @@ import axios from 'axios'
 import store from '@/store'
 
 export const authClient = axios.create({
-    baseURL: import.meta.env.VUE_APP_API_URL,
+    baseURL: import.meta.env.VITE_APP_API_URL,
     withCredentials: true, // required to handle the CSRF token
 })
 
@@ -39,7 +39,7 @@ export default {
         return authClient.post('/forgot-password', payload)
     },
     getAuthUser() {
-        return authClient.get('/api/users/auth')
+        return authClient.get('/users/auth')
     },
     async resetPassword(payload) {
         await authClient.get('/sanctum/csrf-cookie')

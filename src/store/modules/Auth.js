@@ -27,6 +27,7 @@ export const mutations = {
 
 export const actions = {
     logout({ commit }) {
+        console.log('DISPATCHED')
         return AuthService.logout()
             .then(() => {
                 commit('SET_USER', null)
@@ -37,6 +38,7 @@ export const actions = {
             })
     },
     getAuthUser({ commit }) {
+        
         commit('SET_LOADING', true)
         return AuthService.getAuthUser()
             .then((response) => {
