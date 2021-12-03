@@ -28,8 +28,15 @@ authClient.interceptors.response.use(
 
 export default {
     async login(payload) {
-        await authClient.get('/sanctum/csrf-cookie')
-        return authClient.post('/login', payload)
+        authClient
+            .get('/sanctum/csrf-cookie')
+            .then((resp) => {
+                console.log('RESX', resp)
+                return authClient.post('/login', payload)
+            })
+            .catch((err) => {
+                console.log(err)
+            })
     },
     logout() {
         return authClient.post('/logout')
@@ -39,7 +46,7 @@ export default {
         return authClient.post('/forgot-password', payload)
     },
     getAuthUser() {
-        return authClient.get('/users/auth')
+        return authClient.get('/api/users/auth')
     },
     async resetPassword(payload) {
         await authClient.get('/sanctum/csrf-cookie')

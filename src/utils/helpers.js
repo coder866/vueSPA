@@ -9,7 +9,7 @@ export const getError = (error) => {
         console.error(`API ${error.config.url} not found`)
         return errorMessage
     }
-    if (import.meta.env === 'DEV') {
+    if (import.meta.env.DEV) {
         console.error(error.response.data)
         console.error(error.response.status)
         console.error(error.response.headers)
