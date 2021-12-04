@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class=" flex flex-col content-center">
     <router-view/>
   </div>
 </template>

@@ -8,7 +8,7 @@
   "dependencies": {
     "@vitejs/plugin-vue": "^1.10.1",
     "autoprefixer": "^10.4.0",
-    "axios": "^0.24.0",
+    "axios": "^0.21.1",
     "eslint": "^8.3.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-vue": "^8.1.1",

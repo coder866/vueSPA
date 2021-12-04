@@ -4,6 +4,7 @@ export default function middlewarePipeline(context, middleware, index) {
         return context.next
     }
     return () => {
+        console.log('PIPELINE-INDEX=', index)
         nextMiddleware({
             ...context,
             next: middlewarePipeline(context, middleware, index + 1),

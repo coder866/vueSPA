@@ -4,7 +4,7 @@
             type="text"
             label="Name"
             name="name"
-            v-model="name"
+            v-model="user.name"
             placeholder="Big Bugs"
             class="mb-2"
         />
@@ -12,7 +12,7 @@
             type="email"
             label="Email"
             name="email"
-            v-model="email"
+            v-model="user.email"
             placeholder="bigbugs@mail.com"
             class="mb-2"
         />
@@ -27,7 +27,7 @@
             type="password"
             label="Confirm Password"
             name="password-confirm"
-            v-model="passwordConfirm"
+            v-model="user.passwordConfirm"
             class="mb-4"
         />
         <BaseBtn type="submit" text="Register" />
@@ -51,22 +51,32 @@ export default {
     },
     data() {
         return {
-            name: null,
-            email: null,
-            password: null,
-            passwordConfirm: null,
+           user:{ 
+                name: null,
+                email: null,
+                password: null,
+                passwordConfirm: null,
+                },
             error: null,
         }
+    },
+    watch:{
+        // this.user.name:(newV,OVal){
+        //     console.log("NewVal",newV);
+        //     console.log("OldVal",OVal);
+        // }
     },
     methods: {
         registerUser() {
             this.error = null
             const payload = {
-                name: this.name,
-                email: this.email,
-                password: this.password,
-                password_confirmation: this.passwordConfirm,
+                name: this.user.name,
+                email: this.user.email,
+                password: this.user.password,
+                password_confirmation: this.user.passwordConfirm,
             }
+            console.log("payLOAD1",payload);
+            return;
             AuthService.registerUser(payload)
                 .then(() => this.$router.push('/dashboard'))
                 .catch((error) => (this.error = getError(error)))

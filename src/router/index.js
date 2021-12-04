@@ -5,6 +5,7 @@ import admin from './middleware/admin'
 import guest from './middleware/guest'
 import middlewarePipeline from '@/router/middlewarePipeline'
 
+
 const history = createWebHashHistory()
 
 const routes = [
@@ -78,7 +79,7 @@ const router = createRouter({ history, routes })
 router.beforeEach((to, from, next) => {
     const middleware = to.meta.middleware
     const context = { to, from, next, store }
-    console.log('MIDDLEWARE', middleware)
+    // console.log('MIDDLEWARE', middleware)
     if (!middleware) {
         return next()
     }

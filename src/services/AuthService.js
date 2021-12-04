@@ -1,43 +1,11 @@
-import axios from 'axios'
-import store from '@/store'
-
-export const authClient = axios.create({
-    baseURL: import.meta.env.VITE_APP_API_URL,
-    withCredentials: true, // required to handle the CSRF token
-})
-
-/*
- * Add a response interceptor
- */
-authClient.interceptors.response.use(
-    (response) => {
-        return response
-    },
-    function (error) {
-        if (
-            error.response &&
-            [401, 419].includes(error.response.status) &&
-            store.getters['auth/authUser'] &&
-            !store.getters['auth/guest']
-        ) {
-            store.dispatch('auth/logout')
-        }
-        return Promise.reject(error)
-    }
-)
+import { authClient } from './AUTH'
 
 export default {
     async login(payload) {
-        authClient
-            .get('/sanctum/csrf-cookie')
-            .then((resp) => {
-                console.log('RESX', resp)
-                return authClient.post('/login', payload)
-            })
-            .catch((err) => {
-                console.log(err)
-            })
+        await authClient.get('/sanctum/csrf-cookie')
+        return authClient.post('/login', payload)
     },
+
     logout() {
         return authClient.post('/logout')
     },
