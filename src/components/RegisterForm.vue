@@ -1,4 +1,6 @@
 <template>
+ <div class="flex flex-row justify-between">
+     <div>
     <form @submit.prevent="registerUser">
         <BaseInput
             type="text"
@@ -20,7 +22,7 @@
             type="password"
             label="Password"
             name="password"
-            v-model="password"
+            v-model="user.password"
             class="mb-2"
         />
         <BaseInput
@@ -30,9 +32,16 @@
             v-model="user.passwordConfirm"
             class="mb-4"
         />
+        
         <BaseBtn type="submit" text="Register" />
         <FlashMessage :error="error" />
     </form>
+    </div>
+    <div class="pre">
+        <pre>{{user}}</pre>
+    </div>
+
+    </div>
 </template>
 
 <script>
@@ -42,12 +51,14 @@ import BaseInput from '@/components/BaseInput.vue'
 import AuthService from '@/services/AuthService.js'
 import FlashMessage from '@/components/FlashMessage.vue'
 
+
 export default {
     name: 'RegisterForm',
     components: {
         BaseBtn,
         BaseInput,
         FlashMessage,
+        
     },
     data() {
         return {
@@ -60,12 +71,6 @@ export default {
             error: null,
         }
     },
-    watch:{
-        // this.user.name:(newV,OVal){
-        //     console.log("NewVal",newV);
-        //     console.log("OldVal",OVal);
-        // }
-    },
     methods: {
         registerUser() {
             this.error = null
@@ -75,8 +80,7 @@ export default {
                 password: this.user.password,
                 password_confirmation: this.user.passwordConfirm,
             }
-            console.log("payLOAD1",payload);
-            return;
+            console.log("payLOAD1",payload)
             AuthService.registerUser(payload)
                 .then(() => this.$router.push('/dashboard'))
                 .catch((error) => (this.error = getError(error)))

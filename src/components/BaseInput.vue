@@ -11,9 +11,8 @@
     <input
       :id="name"
       :type="type"
-       v-bind:value="value"
       :required="required"
-       @input="$emit('input', $event.target.value)"
+       @input="updateValue($event.target.value)"
       :placeholder="placeholder"
       :autocomplete="autocomplete"
       class="block w-full px-3 py-2 placeholder-gray-400 border border-gray-300 rounded-md shadow-sm appearance-none focus:outline-none focus:ring-blue-500 focus:border-blue-500"
@@ -58,10 +57,10 @@ export default {
       default: null,
     },
   },
+  emits: ['update:modelValue'],
   methods: {
-    updateValue(event) {
-      //console.log("InputValue", event.target.value)
-      return this.$emit("input", event.target.value);
+    updateValue(value) {
+      this.$emit("update:modelValue", value);
     },
   },
 };

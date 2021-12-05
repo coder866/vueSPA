@@ -1,6 +1,6 @@
 <template>
-    <div>
-        <RegisterForm />
+    <div> 
+        <RegisterForm/>
     </div>
 </template>
 
@@ -10,6 +10,13 @@ export default {
     components: {
         RegisterForm,
     },
+    data(){
+        return{
+            user:{
+                username:null,
+           }
+        }
+    }
 }
 </script>
 

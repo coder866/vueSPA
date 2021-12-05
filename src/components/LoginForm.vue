@@ -57,14 +57,17 @@ export default {
             try {
                 AuthService.login(payload).then(
                     (resp) => {
-                        console.log('RESPONSE-LOGIN', resp)
+                        console.log('RESPONSE-LOGIN', resp.data)
+                        //this.$store.dispatch('auth/getAuthUser')
                     },
                     (err) => {
                         console.log('ERROR', err)
                     }
                 )
+                this.$store.dispatch('auth/getAuthUser');
+                
+                const authUser = this.$store.getters['auth/authUser']
 
-                const authUser = await this.$store.dispatch('auth/getAuthUser')
                 if (authUser) {
                     this.$store.dispatch('auth/setGuest', {
                         value: 'isNotGuest',

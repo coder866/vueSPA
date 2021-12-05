@@ -1,12 +1,11 @@
-import { createRouter, createWebHashHistory } from 'vue-router'
+import { createRouter, createWebHistory } from 'vue-router'
 import store from '@/store/index'
 import auth from './middleware/auth'
 import admin from './middleware/admin'
 import guest from './middleware/guest'
 import middlewarePipeline from '@/router/middlewarePipeline'
 
-
-const history = createWebHashHistory()
+const history = createWebHistory()
 
 const routes = [
     {
@@ -74,7 +73,10 @@ const routes = [
     },
 ]
 
-const router = createRouter({ history, routes })
+const router = createRouter({
+    history: history,
+    routes: routes,
+})
 
 router.beforeEach((to, from, next) => {
     const middleware = to.meta.middleware
